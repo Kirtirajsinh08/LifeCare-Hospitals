@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LifeCare Hospitals</title>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <link rel="shortcut icon" href="Symbol.png" type="image/svg+xml"/>        
+    <style>
+
+        .dropitem {
+            color: #0075A8;
+            font-weight: 500;
+        }
+
+        .dropitem:hover {
+            color: white;
+            background-color: #0075A8;
+        }
+
+        .bignav {
+            background-color: aquamarine;
+        }
+
+        .smallnav {
+            background-color: blue;
+        }
+
+        /* Add custom styles for the scrollable dropdown */
+        .dropdown-menu.specialities-menu {
+            max-height: 400px;
+            overflow-y: auto;
+            overflow-x: hidden;
+            width:300px;
+            background-color: whitesmoke
+        }
+
+        .text{
+            color:red;
+            font-weight: 700;
+        }
+
+        .text:hover{
+            color:#0075A8;
+            background-color: white;
+            box-shadow: 0 10px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+
+        .hospital-branches{
+            color:red;
+            font-weight: 700;
+            text-align: center;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            font-size: larger;
+        }
+
+        .modhead {
+            background-color: limegreen;
+            height: 50px;
+        }
+
+        .fixed-button {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+        }
+
+        .fixed{
+            position: fixed;
+            bottom: 100px;
+            right:10px;
+            width:500px;
+            height:500px
+        }
+
+        .img1 {
+            max-width: 90%; 
+            height: auto; 
+            margin: 5px;
+        }
+        
+        .view {
+            display: flex;
+            flex-direction: column;  
+            align-items: center; 
+            padding: 10px;
+            padding-top: 2px;
+        }
+
+        .card {
+            background-color: white;
+            width: 50%;
+            padding:2px;
+            border: 2px solid black
+        }
+
+        .card:hover{
+            transform: scale(110%,110%);
+            transition-duration: 3s; 
+        }
+
+        .button:hover{
+            transform: scale(1.05);
+            transition-duration: 3s;
+        }
+
+        .title{
+            color:#0075A8;
+            font-size: xx-large;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            text-align: center;
+            font-weight: bolder;
+        }
+
+        .experts {
+            display: flex;
+            flex-direction: column;  
+            width: 80%;
+            justify-content: center;
+            align-items: center;
+            margin-left: 150px;
+        }
+
+        .expert-header{
+            background-color: white;
+        }
+
+        .expert-card{
+            padding: 20px;
+            background-color: aquamarine;
+            margin: 20px;
+        }
+
+        .d-img {
+            max-width: 90%; 
+            height: auto; 
+            margin: 5px;
+            
+        }
+
+        .doctor-name{
+            text-align: center;
+            font-size: 20px;
+            color: #0075A8;
+            font-weight: bold;
+        }
+
+        .doctor-expertise{
+            text-align: center;
+            font-size: 12px;
+            color: #0075A8;
+            font-weight: bold;
+        }
+
+        .profile{
+            padding: 5px;
+            margin-left: 45px;
+        }
+
+        .profile .fa-brands{
+            color: #0075A8;
+            border: 1px solid #0075A8; 
+            border-radius: 50%;
+            padding: 5px;
+            cursor: pointer;
+        }
+
+        .profile .fa-brands:hover{
+            color: white;
+            background-color: #0075A8;
+        }
+
+        .backscreen{
+            background-color: black;
+        }
+        
+        .hospital-footer {
+            display: flex;
+            flex-direction: column;  
+            align-items: center; 
+            padding: 10px;
+            padding-top: 2px;
+        }
+
+        .head-name{
+            font-size: 20px;
+            color: #11AB77;
+            margin: 0px 0px 10px;
+            padding: 0px 0px 12px;
+            font-weight: 700;
+            text-decoration:underline solid white 3px;
+        }
+
+        .head-info{
+            color: white;
+            font-size: 16px;
+            margin: 0px 0px 0px 15px;
+            font-weight: 500;
+        }
+
+        .head-info:hover{
+            text-decoration:underline solid white ;
+        }
+
+        .sym{
+            font-size: 16px;
+            font-weight: 500;
+            color: white;
+            margin-left: 5px;
+        }
+
+        .foot-img{
+            margin: 10px 0px 0px 30px
+        }
+
+        .fa-brands{
+            color: white; 
+            border: 1px solid white; 
+            border-radius: 50%;
+            padding: 7px;
+            cursor: pointer;
+        }
+
+        .fa-brands:hover{
+            background-color: white;
+            color: black;
+        }
+
+        @media (min-width: 768px) {
+            .view {
+                flex-direction: row; 
+                justify-content: space-around;
+                align-items: stretch;
+                overflow-x: hidden;
+            }
+
+            .card {
+                flex: 1;
+                overflow-x: hidden;
+                margin: 5px;
+            }
+
+            .info {
+                max-height: 400px;
+                overflow-y: auto;
+                overflow-x: hidden;
+                padding-right: 30px;
+            }
+
+            .experts {
+                flex-direction: row; 
+                justify-content: space-around;
+                align-items: stretch;
+                overflow-x: hidden;
+            }
+
+            .expert-card{
+                flex: 1;
+                overflow-x: hidden;
+            }
+
+            .hospital-footer {
+                flex-direction: row; 
+                justify-content: space-around;
+                align-items: stretch;
+                overflow-x: hidden;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Code for navbar begins --> 
+    
+    <nav class="navbar navbar-expand-lg smallnav">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse justify-content-end" style="height:10px; margin-right:30px" id="open">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link text-white bg-success">24/7 Helpline : 70 43 34 31 19</a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a href="" class="nav-link dropdown-toggle text-white" data-bs-toggle="dropdown">Blogs</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="BlogArticle.html" class="dropdown-item dropitem">Articles</a></li>
+                            <div class="dropdown-divider"></div>
+                            <li><a href="#" class="dropdown-item dropitem">Videos</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="https://maps.app.goo.gl/FHRVVP4kkwhLhMSE6" class="nav-link text-white">Location</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="#" class="nav-link text-white">Career</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="DoctorStatus.html" class="nav-link text-white">Doctor's Status</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <nav class="navbar navbar-expand-lg bignav " style="display:flex">
+        <div class="container-fluid">
+            <a href="#" style="text-decoration: none">
+                <img src="Symbol.png" alt="" style="width:50px; height:50px">
+                <img src="sym1.png" alt="" style="width:75px; height:40px">
+            </a>
+
+            <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#open">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-center" id="open">
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a href="" class="nav-link dropdown-toggle text" data-bs-toggle="dropdown">About Us</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="OurStory.html" class="dropdown-item dropitem">Our Story</a></li>
+                            <div class="dropdown-divider"></div>
+                            <li><a href="#" class="dropdown-item dropitem">Vision/Mission</a></li>
+                            <div class="dropdown-divider"></div>
+                            <li><a href="#" class="dropdown-item dropitem">History</a></li>
+                            <div class="dropdown-divider"></div>
+                            <li><a href="#" class="dropdown-item dropitem">Awards</a></li>
+                            <div class="dropdown-divider"></div>
+                            <li><a href="#" class="dropdown-item dropitem">MD's Message</a></li>
+                            <div class="dropdown-divider"></div>
+                            <li><a href="#" class="dropdown-item dropitem">CSR</a></li>
+                            <div class="dropdown-divider"></div>
+                            <li><a href="#" class="dropdown-item dropitem">Quality Commit</a></li>
+                            <div class="dropdown-divider"></div>
+                            <li><a href="#" class="dropdown-item dropitem">Why LifeCare</a></li>
+                            <div class="dropdown-divider"></div>
+                            <li><a href="#" class="dropdown-item dropitem">MD's Message</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a href="" class="nav-link dropdown-toggle text" data-bs-toggle="dropdown">Specialities</a>
+                        <div class="scrollable-dropdown">
+                            <ul class="dropdown-menu specialities-menu scrollable-dropdown">
+                                <li><a href="#" class="dropdown-item dropitem">Anesthesiology</a></li>
+                                <div class="dropdown-divider"></div>
+                                <li><a href="#" class="dropdown-item dropitem">Bone Marrow Transplant</a></li>
+                                <div class="dropdown-divider"></div>
+                                <li><a href="Cardiovascular.html" class="dropdown-item dropitem">Cardiovascular & Thoracic Surgery</a></li>
+                                <div class="dropdown-divider"></div>
+                                <li><a href="#" class="dropdown-item dropitem">Cardiology</a></li>
+                                <div class="dropdown-divider"></div>
+                                <li><a href="#" class="dropdown-item dropitem">Clinical Nutrition & Dietics</a></li>
+                                <div class="dropdown-divider"></div>
+                                <li><a href="#" class="dropdown-item dropitem">Critical Care</a></li>
+                                <div class="dropdown-divider"></div>
+                                <li><a href="#" class="dropdown-item dropitem">Dental Sciences</a></li>
+                                <div class="dropdown-divider"></div>
+                                <li><a href="#" class="dropdown-item dropitem">Dermatology</a></li>
+                                <div class="dropdown-divider"></div>
+                                <li><a href="" class="dropdown-item dropitem">Diabetology & Endocrinology</a></li>
+                                <div class="dropdown-divider"></div>
+                                <li><a href="#" class="dropdown-item dropitem">Electrophysiotherapy</a></li>
+                                <div class="dropdown-divider"></div>
+                                <li><a href="#" class="dropdown-item dropitem">Emergency Medicine</a></li>
+                                <div class="dropdown-divider"></div>
+                                <li><a href="#" class="dropdown-item dropitem">ENT</a></li>
+                                <div class="dropdown-divider"></div>
+                                <li><a href="#" class="dropdown-item dropitem">General Surgery</a></li>
+                                <div class="dropdown-divider"></div>
+                                <li><a href="#" class="dropdown-item dropitem">Haemato-Oncology</a></li>
+                                <div class="dropdown-divider"></div>
+                                <li><a href="#" class="dropdown-item dropitem">Hip-Joint Replacement</a></li>
+                                <div class="dropdown-divider"></div>
+                                <li><a href="#" class="dropdown-item dropitem">Infectious Diseases</a></li>
+                                <div class="dropdown-divider"></div>
+                                <li><a href="#" class="dropdown-item dropitem">Internal Medicine</a></li>
+                                <div class="dropdown-divider"></div>
+                                <li><a href="#" class="dropdown-item dropitem">Joint Replacement</a></li>
+                                <div class="dropdown-divider"></div>
+                                <li><a href="#" class="dropdown-item dropitem">Kideny Transplant</a></li>
+                                <div class="dropdown-divider"></div>
+                                <li><a href="#" class="dropdown-item dropitem">Knee Replacement</a></li>
+                                <div class="dropdown-divider"></div>
+                                <li><a href="#" class="dropdown-item dropitem">Liver & HPB Surgery</a></li>
+                                <div class="dropdown-divider"></div>
+                                <li><a href="#" class="dropdown-item dropitem">Liver Transplant</a></li>
+                                <div class="dropdown-divider"></div>
+                                <li><a href="#" class="dropdown-item dropitem">Medical Gasentrology</a></li>
+                                <div class="dropdown-divider"></div>
+                                <li><a href="#" class="dropdown-item dropitem">Medical Oncology</a></li>
+                                <div class="dropdown-divider"></div>
+                                <li><a href="#" class="dropdown-item dropitem">Nephrology</a></li>
+                                <div class="dropdown-divider"></div>
+                                <li><a href="#" class="dropdown-item dropitem">Nuclear Medicine</a></li>
+                                <div class="dropdown-divider"></div>
+                                <li><a href="Gyanecology.html" class="dropdown-item dropitem">Obsetrics & Gynaecology</a></li>
+                                <div class="dropdown-divider"></div>
+                                <li><a href="#" class="dropdown-item dropitem">Opthalamology</a></li>
+                                <div class="dropdown-divider"></div>
+                                <li><a href="#" class="dropdown-item dropitem">Orthopedics & Trauma</a></li>
+                                <div class="dropdown-divider"></div>
+                                <li><a href="#" class="dropdown-item dropitem">Preventive Oncology</a></li>
+                                <div class="dropdown-divider"></div>
+                                <li><a href="#" class="dropdown-item dropitem">Radiation Oncology</a></li>
+                                <div class="dropdown-divider"></div>
+                                <li><a href="Robotic.html" class="dropdown-item dropitem">Robotic Surgery</a></li>
+                                <div class="dropdown-divider"></div>
+                                <li><a href="#" class="dropdown-item dropitem">Surgical Oncology</a></li>
+                                <div class="dropdown-divider"></div>
+                                <li><a href="#" class="dropdown-item dropitem">Spine Surgery</a></li>
+                                <div class="dropdown-divider"></div>
+                                <li><a href="#" class="dropdown-item dropitem">Uro Oncology</a></li>
+                                <div class="dropdown-divider"></div>
+                                <li><a href="#" class="dropdown-item dropitem">Urology</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a href="#" class="nav-link text">Find A Doctor</a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a href="" class="nav-link dropdown-toggle text" data-bs-toggle="dropdown">Patients Service</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#" class="dropdown-item dropitem">Download Report</a></li>
+                            <div class="dropdown-divider"></div>
+                            <li><a href="HealthPlans.html" class="dropdown-item dropitem">Health Checkup</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="#" class="nav-link text">International Patients</a>
+                    </li>
+
+                    <li class="nav-item dropdown" style="padding-left: 10px">
+                        <div class="form-group">
+                            <select class="form-select">
+                                <option value="" selected disabled hidden>Ahmedabad</option>
+                                <option value="">Ahmedabad</option>
+                                <option value="">Surat</option>
+                                <option value="">Vadodara</option>
+                                <option value="">Gandhinagar</option>
+                                <option value="">Rajkot</option>
+                                <option value="">Valsad</option>
+                            </select>
+                        </div>
+                    </li>
+
+                    <li>
+                        <a href="Appointment.html">
+                            <button class="btn btn-info btn-sm" style="padding: 7px; margin-left:10px">Book Appointment</button>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Code for  navbar ends -->
+    <!-- Code for carousel begins -->
+
+    <div style="margin:10px"></div>
+    <div id="demo" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
+            <button data-bs-target="#demo" data-bs-slide-to="1"></button>
+            <button data-bs-target="#demo" data-bs-slide-to="2"></button>
+            <button data-bs-target="#demo" data-bs-slide-to="3"></button>
+        </div>
+
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="Achievement1.png" alt="" class="mx-auto d-block">
+            </div>
+            <div class="carousel-item">
+                <img src="Achievement2.png" alt="" class="mx-auto d-block">
+            </div>
+            <div class="carousel-item">
+                <img src="Achievement3.png" alt="" class="mx-auto d-block" style="width:100%">
+            </div>
+            <div class="carousel-item">
+                <img src="Achievement4.png" alt="" class="mx-auto d-block" style="width:100%">
+            </div>
+        </div>
+
+        <button class="carousel-control-prev" data-bs-target="#demo" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </button>
+        <button class="carousel-control-next" data-bs-target="#demo" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </button>
+    </div> <br>
+
+    <!-- Code for  carousel ends -->
+    <!-- Code for our hospital begins -->
+
+    <div>
+        <div class="title">Our Hospitals</div>
+        <div id="demo" class="view" >
+            <div class="card" style="margin: 20px">
+                    <img src="LifeCare,Ahmedabad.png" alt="" class="img1 mx-auto d-block"><div class="hospital-branches">LifeCare, Ahmedabad</div>
+            </div>
+    
+            <div class="card" style="margin: 20px">
+                    <img src="LifeCare,Surat.png" alt="" class="img1 mx-auto d-block"><div class="hospital-branches">LifeCare, Surat</div>
+            </div>
+    
+            <div class="card" style="margin: 20px">
+                    <img src="LifeCare,Vadodara.png" alt="" class="img1 mx-auto d-block"><div class="hospital-branches">LifeCare, Vadodara</div>
+            </div>
+        </div>
+
+        <div id="demo" class="view">
+            <div class="card" style="margin: 20px">
+                    <img src="LifeCare,Gandhinagar.png" alt="" class="img1 mx-auto d-block"><div class="hospital-branches">LifeCare, Gandhinagar</div>
+            </div>
+    
+            <div class="card" style="margin: 20px">
+                    <img src="LifeCare,Rajkot.png" alt="" class="img1 mx-auto d-block"><div class="hospital-branches">LifeCare, Rajkot</div>
+            </div>
+    
+            <div class="card" style="margin: 20px">
+                    <img src="LifeCare,Valsad.png" alt="" class="img1 mx-auto d-block"><div class="hospital-branches">LifeCare, Valsad</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Code for  our hospital ends -->
+    <!-- Code for lifecare hospital begins -->
+
+    <div style="display: flex;" class="view">
+        <div style="flex: 60%; padding-right:30px" class="info">
+            Welcome To, 
+            <h3 class="h1-our-hospital" style="text-align:left">LifeCare Hospital, Ahmedabad</h3>
+            LifeCare Hospitals stands unwavering in its unwavering commitment to delivering unparalleled medical excellence to our esteemed patients. As a distinguished network of private healthcare institutions, we have consistently been at the forefront of the medical landscape since our establishment in 2001. Operating six cutting-edge tertiary care facilities strategically located across Western India, we take immense pride in our profound impact on the healthcare sector. Our resolute dedication to upholding the highest standards of medical care is underscored by the prestigious accreditation bestowed upon us by the National Accreditation Board for Hospitals & Healthcare Providers (NABH). This recognition serves as a testament to our unyielding pledge to deliver superlative medical treatments.
+            <br>
+Within the expansive realm of our hospital network, we present a comprehensive array of preventive and diagnostic modalities spanning across diverse specialties. Our commitment to innovation is evident in the incorporation of advanced surgical interventions, including the revolutionary Da Vinci Robotic-assisted Surgeries and state-of-the-art Robotic Knee Replacements. These cutting-edge technologies not only signify our continuous pursuit of excellence but also exemplify our unwavering commitment to providing patients with the most advanced and effective treatment options available. LifeCare Hospitals stands as a beacon of healthcare distinction, dedicated to fostering the well-being of our community through the provision of top-tier medical services.
+        </div>
+
+        <div style="flex: 40%;"> 
+            <img src="LifeCare,Ahm.png" alt="" class="mx-auto d-block" style="width: 500px; height:400px;">
+        </div>
+    </div>
+
+    <!-- Code for lifecare hospital ends -->
+    <!-- Code for buttons begins -->
+
+    <div style="display: flex; margin-bottom: 20px" class="view">
+        <div style="flex: 33.33%">
+            <a href="Appointment.html"><img src="Button2.png" alt="" style="width: 500px; height: 300px; padding: 20px; margin: 5px" class="button"></a>
+        </div>
+        <div style="flex: 33.33%">
+            <a href="HealthPlans.html"><img src="Button1.png" alt="" style="width: 500px; height: 300px; padding: 20px; margin: 5px" class="button"></a>
+        </div>
+        <div style="flex: 33.33%">
+            <a href=""><img src="Button3.png" alt="" style="width: 500px; height: 300px; padding: 20px; margin: 5px; " class="button"></a>
+        </div> 
+    </div>
+
+    <!-- Code for buttons ends -->
+    <!-- Code for experts begins -->
+
+    <div class="title">Our Experts</div>
+    <div id="demo" class="experts">
+        <div class="expert-card">
+            <div class="expert-header">
+                <a href="#a1" class="card-link" style="text-decoration:none"> 
+                    <img src="D1.png" alt="" class="d-img mx-auto d-block"> 
+                    <hr style="margin: 10px"> 
+                    <div class="doctor-name">Dr. J K Limaye</div> 
+                    <div class="doctor-expertise">Nephrology</div>
+                    <div class="profile">
+                        <i class="fa-brands fa-linkedin"></i>
+                        <i class="fa-brands fa-facebook"></i>
+                        <i class="fa-brands fa-twitter"></i>
+                        <i class="fa-brands fa-instagram"></i>
+                    </div>  
+                </a>
+            </div>
+        </div>
+
+        <div class="expert-card">
+            <div class="expert-header">
+                <a href="#a1" class="card-link" style="text-decoration:none"> 
+                    <img src="D1.png" alt="" class="d-img mx-auto d-block"> 
+                    <hr style="margin: 10px"> 
+                    <div class="doctor-name">Dr. M S Sharma</div> 
+                    <div  class="doctor-expertise">Cardiology</div>
+                    <div class="profile">
+                        <i class="fa-brands fa-linkedin"></i>
+                        <i class="fa-brands fa-facebook"></i>
+                        <i class="fa-brands fa-twitter"></i>
+                        <i class="fa-brands fa-instagram"></i>
+                    </div> 
+                </a>
+            </div>
+        </div>
+
+        <div class="expert-card">
+            <div class="expert-header">
+                <a href="#a1" class="card-link" style="text-decoration:none"> 
+                    <img src="D1.png" alt="" class="d-img mx-auto d-block"> 
+                    <hr style="margin: 10px"> 
+                    <div class="doctor-name">Dr. A R Patel</div> 
+                    <div  class="doctor-expertise">Gyanecology</div>
+                    <div class="profile">
+                        <i class="fa-brands fa-linkedin"></i>
+                        <i class="fa-brands fa-facebook"></i>
+                        <i class="fa-brands fa-twitter"></i>
+                        <i class="fa-brands fa-instagram"></i>
+                    </div> 
+                </a>
+            </div>
+        </div>
+
+        <div class="expert-card">
+            <div class="expert-header">
+                <a href="#a1" class="card-link" style="text-decoration:none"> 
+                    <img src="D1.png" alt="" class="d-img mx-auto d-block"> 
+                    <hr style="margin: 10px"> 
+                    <div class="doctor-name">Dr. D N Dholakiya</div> 
+                    <div  class="doctor-expertise">Opthalamology</div>
+                    <div class="profile">
+                        <i class="fa-brands fa-linkedin"></i>
+                        <i class="fa-brands fa-facebook"></i>
+                        <i class="fa-brands fa-twitter"></i>
+                        <i class="fa-brands fa-instagram"></i>
+                    </div> 
+                </a>
+            </div>
+        </div>
+    </div>
+    <div style="text-align: center">View our compassionate and enthusiastic team of medical experts, committed to you in your healthy life journey >> <a href="" style="text-decoration:none">View all doctors</a></div>
+    <br><br><br>
+
+    <!-- Code for  experts ends -->
+    <!-- Code for footer begins -->
+
+    <div class="backscreen">
+        <div style="display: flex" class="hospital-footer">
+            <div style="flex: 34%" class="foot-img">
+                <a href="#" style="text-decoration: none">
+                    <img src="Symbol.png" alt="" style="height: 50px; width:50px">
+                    <img src="sym2.png" alt=""  style="height: 50px; width:150px">
+                </a>
+                <div class="head-name" style="margin-top:10px">Stay In Touch</div>
+                <div class="head-info" style="margin-left: 10px"><i class="fa-solid fa-location-dot"></i> Sterling Hospitals, Gurukul</div>
+                <div class="head-info" style="margin-left: 10px">Memnagar, Ahmedabad -380052, Gujarat, India</div>
+                <div class="head-info" style="margin-left: 10px"><i class="fa-solid fa-phone-flip"></i> 70 43 34 31 19, 097-3001 121212</div>
+                <div style="margin-left: 6px; margin-top: 7px">
+                    <i class="fa-brands fa-facebook"></i>
+                    <i class="fa-brands fa-twitter"></i>
+                    <i class="fa-brands fa-instagram"></i>
+                </div>
+            </div>
+            
+            <div style="flex: 22%">
+                <div class="head-name">Patient Services</div>
+                <div class="sym">+<span class="head-info">Download Report</span></div>
+                <div class="sym">+<span class="head-info">Patient Facilities</span></div>
+                <div class="sym">+<span class="head-info">Our Empanelments</span></div>
+                <div class="sym">+<span class="head-info">Rights And Responsibilities</span></div>
+                <div class="sym">+<span class="head-info">Quality Commitment</span></div>
+                <div class="sym">+<span class="head-info">Health CheckUp</span></div>
+            </div>
+    
+            <div style="flex: 22%">
+                <div class="head-name">Quick Links</div>
+                <div class="sym">+<span class="head-info">Blogs - Article</span></div>
+                <div class="sym">+<span class="head-info">Blogs - Videos</span></div>
+                <div class="sym">+<span class="head-info">News Room</span></div>
+                <div class="sym">+<span class="head-info">About Us</span></div>
+                <div class="sym">+<span class="head-info">Career</span></div>
+                <div class="sym">+<span class="head-info">Contact Us</span></div>
+                <div class="sym">+<span class="head-info">BMW</span></div>
+                <div class="sym">+<span class="head-info">Notice And Notification</span></div>
+            </div>
+    
+            <div style="flex: 22%">
+                <div class="head-name">Helpful Links</div>
+                <div class="sym">+<span class="head-info">Accrediations</span></div>
+                <div class="sym">+<span class="head-info">Sitemap</span></div>
+                <div class="sym">+<span class="head-info">Privacy Policy</span></div>
+                <div class="sym">+<span class="head-info">Terms And Conditions</span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Code for  footer ends -->
+    <!-- Code for modal begins -->
+
+    <div>
+        <div class="fixed-button">
+            <button data-bs-toggle="modal" data-bs-target="#mood"> <img src="Circle.jpg" alt="" class="rounded-circle" style="width:50px; height:50px;"  class="bg-dark"> </button>
+        </div>
+    
+        <div class="modal fade shown" id="mood" style="top: auto; height: 500px;">
+            <div class="modal-dialog fixed">
+                <div class="modal-content">
+                    <div class="modal-header modhead">
+                        <div class="modal-title text-light" style="font-size: large;"> <img src="Circle2.png" alt="" class="rounded-cicle" style="width:50px; height:50px;">Conversations</div>
+                    </div>
+    
+                    <div class="modal-body" style="font-size: medium">
+                        Welcome to LifeCare Hospital 🙏<br> I,m LyF a multilingual chatbot. <br>
+                        I am here to guide you through the website if you face any problems.
+                        <br> Which language will you prefer for interacting with me ? <br>
+                        <button class="btn btn-success btn-sm">English</button>
+                        <button class="btn btn-success btn-sm">हिंदी</button>
+                        <button class="btn btn-success btn-sm">ગુજરાતી</button>
+                        <br><br><br><br><br><br><br><br>
+                    </div>
+    
+                    <div class="modal-footer">
+                        <button class="btn btn-warning btn-sm mx-auto d-block">New Conversation</button>
+                        <button class="btn btn-danger btn-sm" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Code for modal ends -->
+
+</body>
+</html> 

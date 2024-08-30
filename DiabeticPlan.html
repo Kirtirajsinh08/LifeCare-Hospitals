@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diabetic Plan</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <link rel="shortcut icon" href="Symbol.png" type="image/svg+xml"/>        
+
+    <style>
+        .modhead {
+            background-color: limegreen;
+            height: 50px;
+        }
+
+        .fixed-button {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+        }
+
+        .fixed{
+            position: fixed;
+            bottom: 100px;
+            right:10px;
+            width:500px;
+            height:500px
+        }
+
+        .dropitem {
+            color: #0075A8;
+            font-weight: 500;
+        }
+
+        .dropitem:hover {
+            color: white;
+            background-color: #0075A8;
+        }
+
+        .bignav {
+            background-color: aquamarine;
+        }
+
+        .smallnav {
+            background-color: blue
+        }
+
+        /* Add custom styles for the scrollable dropdown */
+        .dropdown-menu.specialities-menu {
+            max-height: 400px;
+            overflow-y: auto;
+            overflow-x: hidden;
+            width:300px;
+            background-color: whitesmoke
+        }
+
+        .disbeticplan{
+            color:#0075A8; 
+            margin-top:25px;  
+            font-size:x-large;
+            font-weight: bold;
+            font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+
+        .text{
+            color:red;
+            font-weight: bolder;
+        }
+
+        .text:hover{
+            color:#0075A8;
+            background-color: white;
+            box-shadow: 0 10px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+
+        .view {
+            display: flex;
+            flex-direction: column;  
+            align-items: center; 
+        }
+
+        .pagename{
+            font-weight:bolder; 
+            font-size:400%; 
+            font-family:Arial, Helvetica, sans-serif;
+            color: white;
+        }
+
+        .pagename-back{
+            background-color:mediumblue;
+            height:200px; 
+            text-align:center; 
+            display:flex; 
+            align-items:center; 
+            justify-content:center; 
+            border-radius:30px; 
+            margin-left:40px;
+            margin-right:40px;
+            margin-top: 10px;
+        }
+
+        .booking-button{
+            background-color: blue;
+            color: white;
+            font-weight: bolder;
+            border: 2px solid black;
+            
+        }
+
+        .booking-button:hover{
+            transform: scale(1.1);
+            background-color: #0075A8;
+            color: aliceblue
+
+        }
+
+        .modal-content{
+            width: 700px;
+        }
+
+        .backscreen{
+            background-color: black;
+        }
+        
+        .hospital-footer {
+            display: flex;
+            flex-direction: column;  
+            align-items: center; 
+            padding: 10px;
+            padding-top: 2px;
+        }
+
+        .head-name{
+            font-size: 20px;
+            color: #11AB77;
+            margin: 0px 0px 10px;
+            padding: 0px 0px 12px;
+            font-weight: 700;
+            text-decoration:underline solid white 3px;
+        }
+
+        .head-info{
+            color: white;
+            font-size: 16px;
+            margin: 0px 0px 0px 15px;
+            font-weight: 500;
+        }
+
+        .head-info:hover{
+            text-decoration:underline solid white ;
+        }
+
+        .sym{
+            font-size: 16px;
+            font-weight: 500;
+            color: white;
+            margin-left: 5px;
+        }
+
+        .foot-img{
+            margin: 10px 0px 0px 30px
+        }
+
+        .fa-brands{
+            color: white; 
+            border: 1px solid white; 
+            border-radius: 50%;
+            padding: 7px;
+            cursor: pointer;
+        }
+
+        .fa-brands:hover{
+            background-color: white;
+            color: black;
+        }
+
+        @media (min-width: 768px) {
+            .view {
+                flex-direction: row; 
+                justify-content: space-around;
+                align-items: stretch;
+                overflow-x: hidden;
+            }
+
+            .hospital-footer {
+                flex-direction: row; 
+                justify-content: space-around;
+                align-items: stretch;
+                overflow-x: hidden;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Code for navbar begins -->
+
+    <nav class="navbar navbar-expand-lg smallnav">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse justify-content-end" style="height:10px; margin-right:30px" id="open">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link text-white bg-success">24/7 Helpline : 70 43 34 31 19</a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a href="" class="nav-link dropdown-toggle text-white" data-bs-toggle="dropdown">Blogs</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="BlogArticle.html" class="dropdown-item dropitem">Articles</a></li>
+                            <div class="dropdown-divider"></div>
+                            <li><a href="#" class="dropdown-item dropitem">Videos</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="https://maps.app.goo.gl/FHRVVP4kkwhLhMSE6" class="nav-link text-white">Location</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="#" class="nav-link text-white">Career</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="DoctorStatus.html" class="nav-link text-white">Doctor's Status</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <nav class="navbar navbar-expand-lg bignav " style="display:flex">
+        <div class="container-fluid">
+            <a href="#" style="text-decoration: none">
+                <img src="Symbol.png" alt="" style="width:50px; height:50px">
+                <img src="sym1.png" alt="" style="width:75px; height:40px">
+            </a>
+
+            <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#open">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-center" id="open">
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a href="" class="nav-link dropdown-toggle text" data-bs-toggle="dropdown">About Us</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="OurStory.html" class="dropdown-item dropitem">Our Story</a></li>
+                            <div class="dropdown-divider"></div>
+                            <li><a href="#" class="dropdown-item dropitem">Vision/Mission</a></li>
+                            <div class="dropdown-divider"></div>
+                            <li><a href="#" class="dropdown-item dropitem">History</a></li>
+                            <div class="dropdown-divider"></div>
+                            <li><a href="#" class="dropdown-item dropitem">Awards</a></li>
+                            <div class="dropdown-divider"></div>
+                            <li><a href="#" class="dropdown-item dropitem">MD's Message</a></li>
+                            <div class="dropdown-divider"></div>
+                            <li><a href="#" class="dropdown-item dropitem">CSR</a></li>
+                            <div class="dropdown-divider"></div>
+                            <li><a href="#" class="dropdown-item dropitem">Quality Commit</a></li>
+                            <div class="dropdown-divider"></div>
+                            <li><a href="#" class="dropdown-item dropitem">Why LifeCare</a></li>
+                            <div class="dropdown-divider"></div>
+                            <li><a href="#" class="dropdown-item dropitem">MD's Message</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a href="" class="nav-link dropdown-toggle text" data-bs-toggle="dropdown">Specialities</a>
+                        <div class="scrollable-dropdown">
+                            <ul class="dropdown-menu specialities-menu scrollable-dropdown">
+                                <li><a href="#" class="dropdown-item dropitem">Anesthesiology</a></li>
+                                <div class="dropdown-divider"></div>
+                                <li><a href="#" class="dropdown-item dropitem">Bone Marrow Transplant</a></li>
+                                <div class="dropdown-divider"></div>
+                                 <li><a href="Cardiovascular.html" class="dropdown-item dropitem">Cardiovascular & Thoracic Surgery</a></li>
+                                <div class="dropdown-divider"></div>
+                                <li><a href="#" class="dropdown-item dropitem">Cardiology</a></li>
+                                <div class="dropdown-divider"></div>
+                                <li><a href="#" class="dropdown-item dropitem">Clinical Nutrition & Dietics</a></li>
+                                <div class="dropdown-divider"></div>
+                                <li><a href="#" class="dropdown-item dropitem">Critical Care</a></li>
+                                <div class="dropdown-divider"></div>
+                                <li><a href="#" class="dropdown-item dropitem">Dental Sciences</a></li>
+                                <div class="dropdown-divider"></div>
+                                <li><a href="#" class="dropdown-item dropitem">Dermatology</a></li>
+                                <div class="dropdown-divider"></div> 
+                                <li><a href="#" class="dropdown-item dropitem">Diabetology & Endocrinology</a></li>
+                                <div class="dropdown-divider"></div>
+                                <li><a href="#" class="dropdown-item dropitem">Electrophysiotherapy</a></li>
+                                <div class="dropdown-divider"></div>
+                                <li><a href="#" class="dropdown-item dropitem">Emergency Medicine</a></li>
+                                <div class="dropdown-divider"></div>
+                                <li><a href="#" class="dropdown-item dropitem">ENT</a></li>
+                                <div class="dropdown-divider"></div>
+                                <li><a href="#" class="dropdown-item dropitem">General Surgery</a></li>
+                                <div class="dropdown-divider"></div>
+                                <li><a href="#" class="dropdown-item dropitem">Haemato-Oncology</a></li>
+                                <div class="dropdown-divider"></div>
+                                <li><a href="#" class="dropdown-item dropitem">Hip-Joint Replacement</a></li>
+                                <div class="dropdown-divider"></div>
+                                <li><a href="#" class="dropdown-item dropitem">Infectious Diseases</a></li>
+                                <div class="dropdown-divider"></div>
+                                <li><a href="#" class="dropdown-item dropitem">Internal Medicine</a></li>
+                                <div class="dropdown-divider"></div>
+                                <li><a href="#" class="dropdown-item dropitem">Joint Replacement</a></li>
+                                <div class="dropdown-divider"></div>
+                                <li><a href="#" class="dropdown-item dropitem">Kideny Transplant</a></li>
+                                <div class="dropdown-divider"></div>
+                                <li><a href="#" class="dropdown-item dropitem">Knee Replacement</a></li>
+                                <div class="dropdown-divider"></div>
+                                <li><a href="#" class="dropdown-item dropitem">Liver & HPB Surgery</a></li>
+                                <div class="dropdown-divider"></div>
+                                <li><a href="#" class="dropdown-item dropitem">Liver Transplant</a></li>
+                                <div class="dropdown-divider"></div>
+                                <li><a href="#" class="dropdown-item dropitem">Medical Gasentrology</a></li>
+                                <div class="dropdown-divider"></div>
+                                <li><a href="#" class="dropdown-item dropitem">Medical Oncology</a></li>
+                                <div class="dropdown-divider"></div>
+                                <li><a href="#" class="dropdown-item dropitem">Nephrology</a></li>
+                                <div class="dropdown-divider"></div>
+                                <li><a href="#" class="dropdown-item dropitem">Nuclear Medicine</a></li>
+                                <div class="dropdown-divider"></div>
+                                <li><a href="Gyanecology.html" class="dropdown-item dropitem">Obsetrics & Gynaecology</a></li>
+                                <div class="dropdown-divider"></div>
+                                <li><a href="#" class="dropdown-item dropitem">Opthalamology</a></li>
+                                <div class="dropdown-divider"></div>
+                                <li><a href="#" class="dropdown-item dropitem">Orthopedics & Trauma</a></li>
+                                <div class="dropdown-divider"></div>
+                                <li><a href="#" class="dropdown-item dropitem">Preventive Oncology</a></li>
+                                <div class="dropdown-divider"></div>
+                                <li><a href="#" class="dropdown-item dropitem">Radiation Oncology</a></li>
+                                <div class="dropdown-divider"></div>
+                                <li><a href="Robotic.html" class="dropdown-item dropitem">Robotic Surgery</a></li>
+                                <div class="dropdown-divider"></div>
+                                <li><a href="#" class="dropdown-item dropitem">Surgical Oncology</a></li>
+                                <div class="dropdown-divider"></div>
+                                <li><a href="#" class="dropdown-item dropitem">Spine Surgery</a></li>
+                                <div class="dropdown-divider"></div>
+                                <li><a href="#" class="dropdown-item dropitem">Uro Oncology</a></li>
+                                <div class="dropdown-divider"></div>
+                                <li><a href="#" class="dropdown-item dropitem">Urology</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a href="#" class="nav-link text">Find A Doctor</a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a href="" class="nav-link dropdown-toggle text" data-bs-toggle="dropdown">Patients Service</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#" class="dropdown-item dropitem">Download Report</a></li>
+                            <div class="dropdown-divider"></div>
+                            <li><a href="HealthPlans.html" class="dropdown-item dropitem">Health Checkup</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="#" class="nav-link text">International Patients</a>
+                    </li>
+
+                    <li class="nav-item dropdown" style="padding-left: 10px">
+                        <div class="form-group">
+                            <select class="form-select">
+                                <option value="" selected disabled hidden>Ahmedabad</option>
+                                <option value="">Ahmedabad</option>
+                                <option value="">Surat</option>
+                                <option value="">Vadodara</option>
+                                <option value="">Gandhinagar</option>
+                                <option value="">Rajkot</option>
+                                <option value="">Valsad</option>
+                            </select>
+                        </div>
+                    </li>
+
+                    <li>
+                        <a href="Appointment.html">
+                            <button class="btn btn-info btn-sm" style="padding: 7px; margin-left:10px">Book Appointment</button>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Code for navbar ends -->
+    <!-- Code for pagename begins -->
+
+    <div class="pagename-back">
+        <div class="pagename">Smokers Health Plan</div>
+    </div>
+
+    <!-- Code for pagename ends -->
+    <!-- Code for diabetic plan begins -->
+
+    <div style="display: flex;" class="view">
+        <div style="flex: 50%;"> 
+            <img src="H15.png" alt="" class="mx-auto d-block" style="width: 600px; height:400px ;padding-left: 30px; margin-top:20px">
+        </div>
+        <div style="flex: 50%; padding-right:30px" class="info">
+            <div class="disbeticplan">Diabetic Plan</div>
+            <div style="font-weight: bolder;">Rate of Plan: Rs. 4500</div>
+                <div style="display: flex; padding: 10px">
+                    <div style="flex:50%">
+                        <li>CBC with ESR</li>
+                        <li>Microalbuminuria</li>
+                        <li>PP Blood Glucose</li>
+                        <li>SGPT</li>
+                        <li>Urine R&M</li>
+                        <li>HCP Screening Echo</li>
+                        <li>HCP Diet Menu Planning</li>
+                        <li>HCP Vision Examination</li> 
+                        <li>HCP Neuropathy Examination</li> 
+                        <li>HCP Consultation</li> 
+                    </div>
+                    <div style="flex: 50%"> 
+                        <li>ECG</li>
+                        <li>Chest PA</li>
+                        <li>Stress Test - NA</li>
+                        <li>Albumin</li>
+                        <li>Creatinine (Blood)</li>
+                        <li>Fasting Blood Glucose</li>
+                        <li>HbA1c Glycohemoglobin</li>
+                        <li>Sonography Screening</li> 
+                        <li>Lipid Profile</li>
+                    </div>
+                </div>
+                <div style="padding: 10px">
+                    <button class="booking-button btn btn-md" data-bs-toggle="modal" data-bs-target="#demo">Book A Plan</button>
+                </div>
+    
+    <!-- Code for diabetic plan ends -->
+    <!-- Code for diabetic plan modal begins -->
+
+                <div class="modal modal-lg fade shown" id="demo">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-body" style="font-size: medium">
+                                <form action="">
+                                    <h3 style="text-align:center">Book A Health Check-Up</h3>
+                                    <div style="display: flex; padding: 10px">
+                                        <div style="flex: 50%;">
+                                            <input type="text" placeholder="Enter Name" style="margin: 5px; width: 85%">
+                                            <br>
+                                            <input type="number" placeholder="Enter Mobile Number" style="margin: 5px; width: 85%">
+                                        </div>
+                                        <div style="flex: 50%">
+                                            <input type="email" placeholder="Enter Email" style="margin: 5px; width: 85%">
+                                            <br>
+                                            <input type="date" placeholder="Enter Date" style="margin: 5px; width: 85%">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <div class="modal-footer  mx-auto d-block" style="height: 50px">
+                                <button class="btn btn-warning btn-sm">Proceed  to Pay</button>
+                                <button class="btn btn-danger btn-sm" data-bs-dismiss="modal">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    <!-- Code for diabetic plan modal ends -->
+        </div>
+    </div><br><br><br>
+
+    <!-- Code for footer begins -->
+
+    <div class="backscreen">
+        <div style="display: flex" class="hospital-footer">
+            <div style="flex: 34%" class="foot-img">
+                <a href="#" style="text-decoration: none">
+                    <img src="Symbol.png" alt="" style="height: 50px; width:50px">
+                    <img src="sym2.png" alt=""  style="height: 50px; width:150px">
+                </a>
+                <div class="head-name" style="margin-top:10px">Stay In Touch</div>
+                <div class="head-info" style="margin-left: 10px"><i class="fa-solid fa-location-dot"></i> Sterling Hospitals, Gurukul</div>
+                <div class="head-info" style="margin-left: 10px">Memnagar, Ahmedabad -380052, Gujarat, India</div>
+                <div class="head-info" style="margin-left: 10px"><i class="fa-solid fa-phone-flip"></i> 70 43 34 31 19, 097-3001 121212</div>
+                <div style="margin-left: 6px; margin-top: 7px">
+                    <i class="fa-brands fa-facebook"></i>
+                    <i class="fa-brands fa-twitter"></i>
+                    <i class="fa-brands fa-instagram"></i>
+                </div>
+            </div>
+
+            <div style="flex: 22%">
+                <div class="head-name">Patient Services</div>
+                <div class="sym">+<span class="head-info">Download Report</span></div>
+                <div class="sym">+<span class="head-info">Patient Facilities</span></div>
+                <div class="sym">+<span class="head-info">Our Empanelments</span></div>
+                <div class="sym">+<span class="head-info">Rights And Responsibilities</span></div>
+                <div class="sym">+<span class="head-info">Quality Commitment</span></div>
+                <div class="sym">+<span class="head-info">Health CheckUp</span></div>
+            </div>
+    
+            <div style="flex: 22%">
+                <div class="head-name">Quick Links</div>
+                <div class="sym">+<span class="head-info">Blogs - Article</span></div>
+                <div class="sym">+<span class="head-info">Blogs - Videos</span></div>
+                <div class="sym">+<span class="head-info">News Room</span></div>
+                <div class="sym">+<span class="head-info">About Us</span></div>
+                <div class="sym">+<span class="head-info">Career</span></div>
+                <div class="sym">+<span class="head-info">Contact Us</span></div>
+                <div class="sym">+<span class="head-info">BMW</span></div>
+                <div class="sym">+<span class="head-info">Notice And Notification</span></div>
+            </div>
+    
+            <div style="flex: 22%">
+                <div class="head-name">Helpful Links</div>
+                <div class="sym">+<span class="head-info">Accrediations</span></div>
+                <div class="sym">+<span class="head-info">Sitemap</span></div>
+                <div class="sym">+<span class="head-info">Privacy Policy</span></div>
+                <div class="sym">+<span class="head-info">Terms And Conditions</span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Code for footer ends -->
+    <!-- Code for modal begins -->
+
+    <div>
+        <div class="fixed-button">
+            <button data-bs-toggle="modal" data-bs-target="#mood"> <img src="Circle.jpg" alt="" class="rounded-circle" style="width:50px; height:50px;"  class="bg-dark"> </button>
+        </div>
+    
+        <div class="modal fade shown" id="mood" style="top: auto; height: 500px;">
+            <div class="modal-dialog fixed">
+                <div class="modal-content">
+                    <div class="modal-header modhead">
+                        <div class="modal-title text-light" style="font-size: large;"> <img src="Circle2.png" alt="" class="rounded-cicle" style="width:50px; height:50px;">Conversations</div>
+                    </div>
+    
+                    <div class="modal-body" style="font-size: medium">
+                        Welcome to LifeCare Hospital 🙏<br> I,m LyF a multilingual chatbot. <br>
+                        I am here to guide you through the website if you face any problems.
+                        <br> Which language will you prefer for interacting with me ? <br>
+                        <button class="btn btn-success btn-sm">English</button>
+                        <button class="btn btn-success btn-sm">हिंदी</button>
+                        <button class="btn btn-success btn-sm">ગુજરાતી</button>
+                        <br><br><br><br><br><br><br><br>
+                    </div>
+    
+                    <div class="modal-footer">
+                        <button class="btn btn-warning btn-sm mx-auto d-block">New Conversation</button>
+                        <button class="btn btn-danger btn-sm" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Code for modal ends -->
+
+</body>
+</html> 
