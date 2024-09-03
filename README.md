@@ -4,7 +4,6 @@ This project is the frontend implementation of a hospital website, designed to p
 
 Responsive Layout: Ensures optimal viewing across all devices, including desktops, tablets, and mobile phones.
 Intuitive Navigation: Simple and easy-to-use navigation to help users quickly find important information, such as services, doctor profiles, and contact details.
-Accessibility: Complies with web accessibility standards (WCAG), including support for screen readers, keyboard navigation, and multiple language options.
 Visual Design: A calming color palette with high-quality images and clear typography to create a welcoming online environment.
 The frontend is built using modern web technologies, optimized for performance, and designed to seamlessly integrate with backend systems for features like appointment scheduling and patient portals.
 
